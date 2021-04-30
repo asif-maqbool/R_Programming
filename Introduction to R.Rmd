@@ -1,8 +1,8 @@
 ---
 title: "Introduction to R Programming"
-author: "Sana Rasheed"
-date: "May 14, 2020"
-output: html_document
+author: "Asif Maqbool"
+date: "April 30 , 2021"
+output: Rmd_document
 ---
 
 
@@ -28,22 +28,38 @@ output: html_document
 
 
 ```{r }
+name <- c("A","S","I","F","M","A","Q","B","O","O","L")
 
 ```
 
 
 ```{r }
-
+X <- c("A","S","I","F","M","A","Q","B","O","O","L")
 ```
 
 
 ```{r }
+y <- 100:120
+```
 
+```{r }
+names(X)    <- c("A","B","C","D","E","F")
 ```
 
 
 ```{r }
+names(y)    <- c("Col_A","Col_B","Col_C","Col_D","Col_E","Col_F","Col_G","Col_H",
+                 "Col_I","Col_J","Col_K","Col_L","Col_M","Col_N","Col_O","Col_P",
+                 "Col_Q","Col_R","Col_S","Col_T","Col_U")
+```
 
+
+```{r }
+a <- matrix(c(2,4,6,8,10,12,14,16,18),3,3)
+```
+
+```{r }
+dimnames(a) <- list(c("R1","R2","R3"),c("C1","C2","C3"))
 ```
 
 
@@ -64,17 +80,21 @@ output: html_document
 
 
 ```{r }
-
+x <- factor(c("Employed","Unemployed","Self-Employed","Employed",
+              "Unemployed","Self-Employed","Employed","Unemployed",
+              "Self-Employed"),levels = c("Employed","Unemployed",
+                                          "Self-Employed"))
 ```
 
 
 ```{r }
-
+table(levels(x))
+table(x)
 ```
 
 
 ```{r }
-
+unclass(x)
 ```
 
 
@@ -101,22 +121,31 @@ output: html_document
 
 
 ```{r }
-
+# data frame created and data is filled
+bank_customers <- data.frame(CustomerID = c("Alicia","Nancy","Fernando","Louis",
+                             "Diane"),
+                             hasAccount = c("No","Yes","Yes","Yes",NA),
+                             totalBalance = c(NA,"USD 10,000","USD 100",
+                             "USD 2,000",NA))
+bank_customers
 ```
 
 
 ```{r }
-
+# no of rows
+nrow(bank_customers)
 ```
 
 
 ```{r }
-
+# no of columns
+ncol(bank_customers)
 ```
 
 
 ```{r }
-
+# names for data frames
+names(bank_customers)
 ```
 
 
@@ -143,12 +172,40 @@ output: html_document
 
 
 ```{r }
-
+# variable containing sequence 1 to 100
+# for loop
+x <- 1:100
+for(i in x) {
+    if(i==0){
+        next
+    } else if (i == 1) {
+        next
+    } else if (i == 2) {
+        i = 2
+    } else if (i %% 2 == 0) {
+        next
+    } else if (i == 3) {
+        i == 3
+    } else if (i %% 3 == 0) {
+        next
+    } else if (i == 5) {
+        i = 5
+    } else if (i %% 5 == 0) {
+        next
+    }
+    print(i)
+}
 ```
 
 
 ```{r }
-
+# while loop
+var <- 1
+while(var <=29){
+    var <- var + 1
+    if(var == 29)
+        print(var)
+    }
 ```
 
 
@@ -182,7 +239,17 @@ output: html_document
 
 
 ```{r }
-
+# matrix
+mat_1 <- matrix(1:9,3,3)
+mat_1[1,1]
+mat_1[1,2]
+mat_1[1,3]
+mat_1[2,1]
+mat_1[2,2]
+mat_1[2,3]
+mat_1[3,1]
+mat_1[3,2]
+mat_1[3,3]
 ```
 
 
@@ -227,7 +294,22 @@ output: html_document
 
 
 ```{r }
-
+gcd <- function(a,b) {
+  
+  if(a > b) {
+    smaller = b
+  } else {
+    smaller = a
+  }
+  for(i in 1:smaller) {
+    if((a %% i == 0) && (b %% i == 0)) {
+      gcd = i
+    }
+  }
+  return(gcd)
+}
+answer <- gcd(10,20)
+answer
 ```
 
 
@@ -269,7 +351,15 @@ output: html_document
 
 
 ```{r }
-
+# question 2 
+allConditionsMeet <- function(a,b) {
+    if (a > 1 & b <5) {
+        return(TRUE)
+    } else {
+        return(FALSE)
+    }
+}
+allConditionsMeet(2,4)
 ```
 
 
@@ -316,22 +406,48 @@ output: html_document
 
 
 ```{r }
-
+matrix_1 <- matrix(1:6,2,3)
+matrix_2 <- matrix(7:12,3,2)
+# element wise multiplication can not happen in this unless matrices of same dimensions
 ```
 
 
 ```{r }
-
+# matrix multiplication
+a1 <- matrix(1:6,2,3)
+c1 <- matrix(7:12,3,2)
+a1 * c1
 ```
 
 
 ```{r }
-
+# matrix my_mat
+my_mat <- matrix(1:4,2,2)
+matrix_determinant <- function(n){
+    det(n)
+}
+matrix_determinant(my_mat)
 ```
 
 
 ```{r }
-
+# date and time in R
+curr_date <- Sys.Date() # current date 
+curr_date
+# current time 
+curr_time <- Sys.time()
+curr_time
+# Date
+Date_object <- as.Date(curr_date)
+Date_object
+# Time
+Time_Object <- as.POSIXlt(curr_time)
+Time_Object
+# print weekday,year,second and hour
+Time_Object$weekday
+Time_Object$year
+Time_Object$sec
+Time_Object$hour
 ```
 
 
@@ -400,7 +516,12 @@ output: html_document
 
 
 ```{r }
-
+# current date and time 
+x <- as.POSIXlt(Sys.time())
+x
+y <- as.POSIXlt(Sys.time(),tz = "GMT")
+y
+x - y
 ```
 
 
@@ -444,22 +565,72 @@ output: html_document
 
 
 ```{r }
-
+# Calculating lapply loop function
+numbers <- list(a=100:150) # sequence of variables from 100:150
+# function to calculate mean 
+calculate_mean <- function(n) {
+    print(mean(n))
+}
+# function to calculate sd
+calculate_sd <- function(z) {
+    print(sd(z))
+}
+lapply(numbers,calculate_mean)
+lapply(numbers,calculate_sd)
 ```
 
 
 ```{r }
-
+# calculating sapply function
+numbers <- list(a=100:150) # sequence of variables from 100:150
+# function to calculate mean 
+calculate_mean <- function(n) {
+    print(mean(n))
+}
+# function to calculate sd
+calculate_sd <- function(z) {
+    print(sd(z))
+}
+sapply(numbers,calculate_mean)
+sapply(numbers,calculate_sd)
 ```
 
 
 ```{r }
-
+# calculating apply function
+numbers <- matrix(101:150,5,10) # matrix
+# function to calculate mean 
+calculate_mean <- function(n) {
+    print(mean(n))
+}
+# function to calculate sd
+calculate_sd <- function(z) {
+    print(sd(z))
+}
+# for mean
+apply(numbers,1,calculate_mean) # apply function on rows for mean
+apply(numbers,2,calculate_mean) # apply function on columns for mean
+# for sd
+apply(numbers,1,calculate_sd) # apply function on rows for sd
+apply(numbers,2,calculate_sd) # apply function on columns for sd
 ```
 
 
 ```{r }
-
+# calculating tapply function
+numbers <- 126:150
+f <- gl(5,5)
+    
+# function to calculate mean 
+calculate_mean <- function(n) {
+    print(mean(n))
+}
+# function to calculate sd
+calculate_sd <- function(z) {
+    print(sd(z))
+}
+tapply(numbers,f,calculate_mean) # tapply for mean
+tapply(numbers,f,calculate_sd) # tapply for sd
 ```
 
 
@@ -484,7 +655,10 @@ output: html_document
 
 
 ```{r }
-
+# row and column wise mean of matrix
+Matrix <- matrix(1:16,4,4)
+print(rowMeans(Matrix)) # rowMeans of matrix
+print(colMeans(Matrix)) # colMeans of Matrix
 ```
 
 
@@ -542,7 +716,12 @@ head(Orange)
 
 
 ```{r }
-
+# split_data 
+split_data <- split(Orange,Orange$circumference)
+split_data
+print(split_data$`30`) # printed at 30
+print(split_data$`75`) # printed at 75 and average age of Tree at circumference 75
+print(split_data$`214`) # average age of Tree at circumference 214
 ```
 
 
